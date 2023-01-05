@@ -2,6 +2,7 @@ import { useParams, useLocation, NavLink, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { IMAGE_URL } from 'ApiService/ApiServise';
 import { getMovieById } from 'ApiService/ApiServise';
+import { Wrapper, Link, NavList, NavItem } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -26,23 +27,26 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <NavLink to={backLinkHref}>Back to films</NavLink>
-      <img
-        src={IMAGE_URL + poster_path}
-        alt={title}
-        loading="lazy"
-        width={250}
-      />
-      <p>{overview}</p>
+      <Link to={backLinkHref}>GO BACK</Link>
+      <h2>{title}</h2>
+      <Wrapper>
+        <img
+          src={IMAGE_URL + poster_path}
+          alt={title}
+          loading="lazy"
+          width={250}
+        />
+        <p>Overview: {overview}</p>
+      </Wrapper>
 
-      <ul>
-        <li>
-          <NavLink to="cast">Cast</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
+      <NavList>
+        <NavItem>
+          <Link to="cast">Cast</Link>
+        </NavItem>
+        <NavItem>
+          <Link to="reviews">Reviews</Link>
+        </NavItem>
+      </NavList>
 
       <Outlet />
     </main>

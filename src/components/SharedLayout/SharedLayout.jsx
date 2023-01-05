@@ -1,21 +1,26 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { NavList, Link } from './SharedLayout.styled';
+import { RiMovie2Line } from 'react-icons/ri';
 
 const SharedLayout = () => {
   return (
     <div>
       <header>
         <div>
-          <span>LOGO</span>
+          <span>
+            <RiMovie2Line color="red" fontSize="50px" />
+            MovieHD
+          </span>
         </div>
         <nav>
-          <ul>
+          <NavList>
             <li>
-              <NavLink to="/">HOME</NavLink>
+              <Link to="/">HOME</Link>
             </li>
             <li>
-              <NavLink to="/movies">MOVIE</NavLink>
+              <Link to="/movies">MOVIE</Link>
             </li>
-          </ul>
+          </NavList>
         </nav>
       </header>
       <Outlet />

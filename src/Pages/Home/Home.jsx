@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getTrending } from 'ApiService/ApiServise';
 import FilmList from 'components/FilmList/FilmList';
+import { Title } from './Home.styled';
 
 const Home = () => {
   const [film, setFilm] = useState([]);
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <main>
-      <h1>Trending film on this week</h1>
+      <Title>Trending film on this week</Title>
       <FilmList films={film} />
     </main>
   );

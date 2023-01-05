@@ -5,10 +5,11 @@ import MovieDetails from 'Pages/MovieDetails/MovieDetails';
 import Movies from 'Pages/Movies/Movies';
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
+import { Container } from 'components/Container/Container.styled';
 
 export const App = () => {
   return (
-    <div>
+    <Container>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -19,6 +20,6 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
-    </div>
+    </Container>
   );
 };
