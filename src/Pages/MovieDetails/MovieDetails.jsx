@@ -1,4 +1,4 @@
-import { useParams, useLocation, NavLink, Outlet } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { IMAGE_URL } from 'ApiService/ApiServise';
 import { getMovieById } from 'ApiService/ApiServise';
