@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavList, Link } from './SharedLayout.styled';
 import { RiMovie2Line } from 'react-icons/ri';
+import MyLoader from 'components/Loader/Loader';
 
 const SharedLayout = () => {
   return (
@@ -24,7 +25,7 @@ const SharedLayout = () => {
           </NavList>
         </nav>
       </header>
-      <Suspense fallback={<div>Loading page...</div>}>
+      <Suspense fallback={<MyLoader />}>
         <Outlet />
       </Suspense>
     </div>

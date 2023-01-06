@@ -1,32 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import SearchForm from 'components/SearchForm/SearchForm';
 import FilmList from 'components/FilmList/FilmList';
 import { searchMovie } from 'ApiService/ApiServise';
+import MyLoader from 'components/Loader/Loader';
 
 const Movies = () => {
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
   const filmName = searchParams.get('name') ?? '';
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (filmName === '') {
-      setMovie([]);
-      return;
-    }
-
-    if (filmName.trim() === '') {
-      console.log('Enter film name');
       return;
     }
 
     const getSearchFilmByName = async () => {
+      setIsLoading(true);
       try {
         const getFilm = await searchMovie(filmName);
-
         setMovie(getFilm);
       } catch (error) {
-        console.log(error);
+        toast.error(`Search is not working. Try again later`);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -34,15 +33,22 @@ const Movies = () => {
   }, [filmName]);
 
   const updateQueryString = name => {
-    const nextParams = name !== '' ? { name } : {};
+    if (!name) {
+      toast.error('Enter film name');
+      return;
+    }
 
-    setSearchParams(nextParams);
+    setSearchParams({ name: name.toLowerCase().trim() });
   };
 
   return (
     <div>
       <SearchForm onChange={updateQueryString} />
+      {isLoading && <MyLoader />}
       {movie.length > 0 && <FilmList films={movie} />}
+      <div>
+        <Toaster />
+      </div>
     </div>
   );
 };

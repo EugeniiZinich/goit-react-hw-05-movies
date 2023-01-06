@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   display: flex;
+  padding-top: 20px;
+`;
+
+export const Main = styled.main`
+  margin-top: 20px;
 `;
 
 export const NavItem = styled.li`
@@ -18,6 +23,7 @@ export const NavList = styled.ul`
 
 export const Link = styled(NavLink)`
   padding: 8px 16px;
+  margin-top: 20px;
   border-radius: 4px;
   text-decoration: none;
   color: black;
