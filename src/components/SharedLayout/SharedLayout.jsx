@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavList, Link } from './SharedLayout.styled';
 import { RiMovie2Line } from 'react-icons/ri';
@@ -23,7 +24,9 @@ const SharedLayout = () => {
           </NavList>
         </nav>
       </header>
-      <Outlet />
+      <Suspense fallback={<div>Loading page...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
